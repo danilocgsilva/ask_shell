@@ -1,0 +1,14 @@
+#!/bin/bash
+
+askshell_version=1
+
+##
+ # Ask a questions.
+ #
+ # @param "$1"
+ #   The title's question
+ # @param $2
+ #   The variable to be filled
+askshell_ask () {
+    read -p "$1" $2
+}
