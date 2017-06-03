@@ -30,3 +30,14 @@ askshell_notempty() {
         askshell_notempty "$1" $2
     fi
 }
+
+##
+ # Checks if the argument is a file
+ #
+ # @param "$1"
+ #   The title's question
+ # @param $2
+ #   The path for the file
+askshell_file() {
+    askshell_notempty() "$1" $2
+}
