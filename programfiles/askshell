@@ -21,8 +21,11 @@ askshell_ask() {
  # @param $2
  #   The variable to be filled
 askshell_notempty() {
-    askshell_ask "$1" $2
-    if [ ${#2} -eq 0 ]; then
+
+    askshell_ask "$1" $2 
+    answer=${!2}
+
+    if [ ${#answer} -eq 0 ]; then
         echo You did not provides any answer to "$1" question. Please, provides something.
         askshell_notempty "$1" $2
     fi
