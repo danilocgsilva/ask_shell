@@ -1,6 +1,6 @@
 #!/bin/bash
 
-askshell_version=1
+askshell_version=2
 
 ##
  # Ask a questions.
@@ -9,6 +9,21 @@ askshell_version=1
  #   The title's question
  # @param $2
  #   The variable to be filled
-askshell_ask () {
+askshell_ask() {
     read -p "$1" $2
+}
+
+##
+ # Forbids the answer to be null
+ #
+ # @param "$1"
+ #   The title's question
+ # @param $2
+ #   The variable to be filled
+askshell_notempty() {
+    askshell_ask "$1" $2
+    if [ ${#2} -eq 0 ]; then
+        echo You did not provides any answer to "$1" question. Please, provides something.
+        askshell_notempty
+    fi
 }
