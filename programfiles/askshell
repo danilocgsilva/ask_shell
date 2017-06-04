@@ -39,5 +39,12 @@ askshell_notempty() {
  # @param $2
  #   The path for the file
 askshell_file() {
-    askshell_notempty() "$1" $2
+
+    askshell_notempty "$1" "$2"
+    answer=${!2}
+
+    if [ ! -f "$answer" ]; then
+        echo The answer provided is not a file.
+        askshell_file "$1" "$2"
+    fi
 }
