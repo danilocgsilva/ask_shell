@@ -32,12 +32,12 @@ askshell_notempty() {
 }
 
 ##
- # Checks if the argument is a file
- #
- # @param "$1"
- #   The title's question
- # @param $2
- #   The path for the file
+# Checks if the argument is a file
+#
+# @param "$1"
+#   The title's question
+# @param $2
+#   The path for the file
 askshell_file() {
 
     askshell_notempty "$1" "$2"
@@ -46,5 +46,21 @@ askshell_file() {
     if [ ! -f "$answer" ]; then
         echo The answer provided is not a file.
         askshell_file "$1" "$2"
+    fi
+}
+
+##
+# Check if the argument is a directory
+# @param "$1"
+#   The title's question
+# @param "$2"
+#   The path for the file
+askshell_directory() {
+    askshell_notempty "$1" "$2"
+    answer=${!2}
+
+    if [ ! -d "$answer" ]; then
+        echo The answer provided is not a directory.
+        askshell_directory "$1" "$2"
     fi
 }
